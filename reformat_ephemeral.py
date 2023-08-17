@@ -1,9 +1,6 @@
 import boto3
 import json
 
-api_keys_file = open("api_keys.json")
-api_keys = json.load(api_keys_file)
-
 ssm_file = open("ssm_ephemeral.json")
 ssm_json = ssm_file.read()
 
@@ -19,7 +16,6 @@ region_lookup = {
 
 instance_ids = ["i-0f0d090f886922105"]
 target_region = region_lookup["USEA"]
-target_env = "deltekdev"
 
 ssm_doc_name = 'test-hyperthreading-ephemeral'
 
