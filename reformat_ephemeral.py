@@ -1,8 +1,17 @@
 import boto3
 import json
+import os
 
 ssm_file = open("ssm_ephemeral.json")
 ssm_json = ssm_file.read()
+
+
+intance_ids = os.environ['Instance ID']
+target_region = os.environ['Region']
+
+print(instance_ids)
+print(target_region)
+
 
 region_lookup = {
 	"USEA":"us-east-1",
@@ -14,7 +23,6 @@ region_lookup = {
 	"APAU":"ap-southeast-2"
 }
 
-instance_ids = ["i-0f0d090f886922105"]
 target_region = region_lookup["USEA"]
 
 ssm_doc_name = 'test-hyperthreading-ephemeral'
