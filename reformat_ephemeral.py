@@ -6,6 +6,8 @@ ssm_file = open("ssm_ephemeral.json")
 ssm_json = ssm_file.read()
 
 
+print(os.environ['Instance ID'])
+
 intance_ids = os.environ['Instance ID']
 target_region = os.environ['Region']
 
