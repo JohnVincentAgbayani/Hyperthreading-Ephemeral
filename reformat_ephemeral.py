@@ -36,6 +36,6 @@ def main():
 	# ssm_delete_response = ssm_client.delete_document(Name=ssm_doc_name)
 	# print(ssm_delete_response)
 
-	return(str(data_log))
+	return(data_log)
 
 print(main())
