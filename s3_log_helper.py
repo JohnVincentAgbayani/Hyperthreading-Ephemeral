@@ -4,7 +4,7 @@ from datetime import datetime
 
 def write_json_s3():
 	log_file = open("sample_data.json")
-	log_json = json.loads(log_file.read())
+	log_json = log_file.read()
 
 	print(type(log_json))
 	print(log_json)
