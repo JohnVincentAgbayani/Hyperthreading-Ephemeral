@@ -38,4 +38,4 @@ def main():
 
 	return(data_log)
 
-main()
+print(main())
