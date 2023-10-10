@@ -26,15 +26,15 @@ def main():
 	ssm_doc_name = 'test-hyperthreading-ephemeral'
 	ssm_client = boto3.client('ssm',  region_name = target_region)
 
-	# ssm_create_response = ssm_client.create_document(Content = ssm_json, Name = ssm_doc_name, DocumentType = 'Command', DocumentFormat = 'JSON', TargetType =  "/AWS::EC2::Instance")
-	# print(ssm_create_response)
+	ssm_create_response = ssm_client.create_document(Content = ssm_json, Name = ssm_doc_name, DocumentType = 'Command', DocumentFormat = 'JSON', TargetType =  "/AWS::EC2::Instance")
+	print(ssm_create_response)
 
-	# for instance in instance_ids:
-	# 	ssm_run_response = ssm_client.send_command(InstanceIds = [instance], DocumentName=ssm_doc_name, DocumentVersion="$DEFAULT", TimeoutSeconds=120)
-	# 	print(ssm_run_response)
+	for instance in instance_ids:
+		ssm_run_response = ssm_client.send_command(InstanceIds = [instance], DocumentName=ssm_doc_name, DocumentVersion="$DEFAULT", TimeoutSeconds=120)
+		print(ssm_run_response)
 
-	# ssm_delete_response = ssm_client.delete_document(Name=ssm_doc_name)
-	# print(ssm_delete_response)
+	ssm_delete_response = ssm_client.delete_document(Name=ssm_doc_name)
+	print(ssm_delete_response)
 
 	return(data_log)
 
