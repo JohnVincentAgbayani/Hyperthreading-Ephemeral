@@ -34,7 +34,7 @@ def main():
 	for instance in instance_ids:
 		ssm_run_response = ssm_client.send_command(InstanceIds = [instance], DocumentName=ssm_doc_name, DocumentVersion="$DEFAULT", TimeoutSeconds=120)
 		data_log[instance] = str(ssm_run_response)
-		print(f"Reformatting drives for {instance}...")
+		print(f"\nReformatting drives for {instance}...")
 
 	ssm_delete_response = ssm_client.delete_document(Name=ssm_doc_name)
 
