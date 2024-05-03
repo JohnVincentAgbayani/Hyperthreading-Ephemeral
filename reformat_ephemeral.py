@@ -56,11 +56,6 @@ def write_json_s3(data_log):
 	goss_secret = goss_secret_file.read()
 	goss_secret = goss_secret.replace("\n","").strip()
 
-	log_file = open("log_data.json")
-	log_json = log_file.read()
-	log_json = log_json.replace("'",'"')
-	log_json = json.loads(log_json)
-
 	target_bucket = "hyper-threading-automation-logs"
 	target_date = str(datetime.today().strftime('%Y-%m-%d(%H:%M:%S)'))
 	final_filename = f'hyperthreading-ephemeral({target_date}).json'
@@ -70,7 +65,7 @@ def write_json_s3(data_log):
 
 	s3object = s3_resource.Object(target_bucket, folder_filename)
 
-	s3object.put(Body=(bytes(json.dumps(log_json, indent=4).encode('UTF-8'))))
+	s3object.put(Body=(bytes(json.dumps(data_log, indent=4).encode('UTF-8'))))
 
 
 data_log = main()
