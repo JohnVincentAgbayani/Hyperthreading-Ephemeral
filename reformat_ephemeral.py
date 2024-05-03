@@ -44,6 +44,5 @@ def main():
 
 	print(data_log)    
 
-	return(data_log)
 
-print(main())
+main()
