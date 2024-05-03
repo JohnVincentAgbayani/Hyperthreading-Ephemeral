@@ -15,15 +15,15 @@
       "inputs": {
         "runCommand": [
           "",
-          "$disks = Get-Disk",
+          "$disks = Get-Disk |Where-Object SerialNumber -Like 'AWS*'",
           "[System.Collections.ArrayList]$drive_letters = 'Z', 'Y'",
           "Foreach ($disk in $disks){",
-          "if($disk.SerialNumber.Contains('AWS')){",
-          "if ($disk.OperationalStatus -eq 'Offline')",
-          "{Set-Disk -Number $disk.Number -IsOffline $False}",
+          "if (($disk.OperationalStatus -eq 'Offline') -or ($disk.PartitionStyle -eq 'RAW')){",
+          "Set-Disk -Number $disk.Number -IsOffline $False",
           "Set-Disk -Number $disk.Number -IsReadonly $False",
           "$dletter = $drive_letters[0]",
           "$drive_letters.RemoveAt(0)",
+          "Initialize-Disk -Number $disk.Number -PartitionStyle GPT",
           "New-Partition -DiskNumber $disk.Number -DriveLetter $dletter –UseMaximumSize",
           "Format-Volume -DriveLetter $dletter -FileSystem NTFS -AllocationUnitSize 65536 -confirm:$False}}",
           ""
