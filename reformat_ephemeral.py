@@ -2,6 +2,8 @@ import boto3
 import json
 import os
 
+from datetime import datetime
+
 def main():
 	ssm_file = open("ssm_ephemeral.json")
 	ssm_json = ssm_file.read()
