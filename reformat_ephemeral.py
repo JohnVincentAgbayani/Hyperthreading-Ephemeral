@@ -37,7 +37,7 @@ def main():
 	ssm_delete_response = ssm_client.delete_document(Name=ssm_doc_name)
 
 	target_date = str(datetime.today().strftime('%Y-%m-%d(%H:%M:%S)'))
-	final_filename = f'{filename}({target_date}).json'
+	final_filename = f'reformat_ephemeral({target_date}).json'
 
 	with open('log_data.json', 'w') as outfile:
 	    json.dump(data_log, outfile)
