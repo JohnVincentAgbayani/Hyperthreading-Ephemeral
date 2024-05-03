@@ -6,6 +6,7 @@ def write_json_s3():
 	log_file = open("sample_data.json")
 	log_json = log_file.read()
 	log_json = log_json.replace("'",'"')
+	print(log_json)
 	log_json = json.loads(log_json)
 
 	target_bucket = "hyper-threading-automation-logs"
