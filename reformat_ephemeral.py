@@ -34,6 +34,7 @@ def main():
 	for instance in instance_ids:
 		ssm_run_response = ssm_client.send_command(InstanceIds = [instance], DocumentName=ssm_doc_name, DocumentVersion="$DEFAULT", TimeoutSeconds=120)
 		data_log[instance] = str(ssm_run_response)
+		print(f"Reformatting drives for {instance}...")
 
 	ssm_delete_response = ssm_client.delete_document(Name=ssm_doc_name)
 
@@ -43,6 +44,7 @@ def main():
 	with open('log_data.json', 'w') as outfile:
 	    json.dump(data_log, outfile)
 
+	print("\nAll target instances have been processed!\n")
 	return data_log  
 
 
@@ -66,6 +68,8 @@ def write_json_s3(data_log):
 	s3object = s3_resource.Object(target_bucket, folder_filename)
 
 	s3object.put(Body=(bytes(json.dumps(data_log, indent=4).encode('UTF-8'))))
+
+	print("\nLog file has been uploaded!\n")
 
 
 data_log = main()
