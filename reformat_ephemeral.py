@@ -12,7 +12,7 @@ def main():
 	instance_ids = os.environ['Instance ID'].split('\n')
 	target_region = os.environ['Region']
 
-	data_log = {"targets":instance_ids, "region":target_region}
+	data_log = {"region":target_region, "targets":instance_ids}
 
 	region_lookup = {
 		"USEA":"us-east-1",
