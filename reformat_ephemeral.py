@@ -30,7 +30,10 @@ def main():
 	ssm_client = boto3.client('ssm',  region_name = target_region)
 
 	#safety delete in case the document was not deleted on previous runs
-	ssm_delete_response = ssm_client.delete_document(Name=ssm_doc_name)
+	try:
+		ssm_delete_response = ssm_client.delete_document(Name=ssm_doc_name)
+	except Exception as e:
+		pass
 
 	ssm_create_response = ssm_client.create_document(Content = ssm_json, Name = ssm_doc_name, DocumentType = 'Command', DocumentFormat = 'JSON', TargetType =  "/AWS::EC2::Instance")
 
